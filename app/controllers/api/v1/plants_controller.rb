@@ -1,8 +1,13 @@
 class Api::V1::PlantsController < ApplicationController
   
   def index
-    plants = Plant.all
-    render json: PlantSerializer.new(plants)
+    if params[:my_plants]
+      plants = Plant.by_user_id(params[:my_plants])
+      render json: PlantSerializer.new(plants)
+    else
+      plants = Plant.all
+      render json: PlantSerializer.new(plants)
+    end
   end
 
   def create
