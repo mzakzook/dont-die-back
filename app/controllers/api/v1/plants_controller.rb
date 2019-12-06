@@ -11,8 +11,9 @@ class Api::V1::PlantsController < ApplicationController
   end
 
   def create
+    
     plant = Plant.create(plant_params)
-    render json: plant
+    render json: PlantSerializer.new(plant)
   end
 
   def show

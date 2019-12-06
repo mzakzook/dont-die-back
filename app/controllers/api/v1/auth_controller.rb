@@ -2,7 +2,9 @@ class Api::V1::AuthController < ApplicationController
   # skip_before_action :authorized, only: [:create]
  
   def show
+
     user = current_user
+    
     render json: { user: user }, status: :accepted
   end
 
